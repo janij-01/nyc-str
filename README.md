@@ -1,8 +1,25 @@
 # NYC short-term rental ingestion
 
-C2 Group 8, 95-815. These scripts load the three raw files and write the cleaned tables. The CSV, Excel, and JSON files stay on disk and are not in this repo.
+C2 Group 8, 95-815. These scripts load the three raw files and write the cleaned tables. The CSV, Excel, and JSON files stay in the team's shared folder and are not in this repo.
 
-PostgreSQL and MongoDB run locally. Connection strings are at the top of `01_import.py` and `05_clean.py` (localhost, database `nyc_str`).
+## Where the data lives
+
+- PostgreSQL on Amazon RDS (instance `de-postgres`, us-east-2), database `nyc_str`: schemas `raw` and `clean`.
+- MongoDB Atlas, database `nyc_str`: collections `complaints_311_raw` and `complaints_311_clean`.
+
+Ask the project manager for the endpoints and credentials. Your IP must be added to the RDS security group (port 5432) and to Atlas Network Access.
+
+## Setup
+
+```bash
+pip install psycopg2-binary pymongo openpyxl
+export PG_DSN="host=<rds-endpoint> port=5432 dbname=nyc_str user=<user> password=<password> sslmode=require"
+export MONGO_URI="mongodb+srv://<user>:<password>@<atlas-cluster>/"
+```
+
+Both scripts read `PG_DSN` and `MONGO_URI` from the environment. If they are not set, the scripts fall back to a local PostgreSQL and MongoDB on `localhost`. Never commit credentials.
+
+## Run
 
 ```bash
 cd nyc-str
