@@ -5,6 +5,7 @@ import argparse
 import csv
 import gzip
 import json
+import os
 import re
 
 import openpyxl
@@ -12,8 +13,11 @@ import psycopg2
 from psycopg2.extras import execute_values
 from pymongo import MongoClient
 
-PG_DSN = "host=localhost port=5432 dbname=nyc_str user=postgres password=postgres"
-MONGO_URI = "mongodb://localhost:27017"
+PG_DSN = os.environ.get(
+    "PG_DSN",
+    "host=localhost port=5432 dbname=nyc_str user=postgres password=postgres",
+)
+MONGO_URI = os.environ.get("MONGO_URI", "mongodb://localhost:27017")
 
 
 def column_name(name):

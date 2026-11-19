@@ -6,13 +6,17 @@ are not updated. Edit the rules below, then run this file again.
 """
 
 import csv
+import os
 from pathlib import Path
 
 import psycopg2
 from pymongo import MongoClient
 
-PG_DSN = "host=localhost port=5432 dbname=nyc_str user=postgres password=postgres"
-MONGO_URI = "mongodb://localhost:27017"
+PG_DSN = os.environ.get(
+    "PG_DSN",
+    "host=localhost port=5432 dbname=nyc_str user=postgres password=postgres",
+)
+MONGO_URI = os.environ.get("MONGO_URI", "mongodb://localhost:27017")
 MONGO_DB = "nyc_str"
 
 # Only this status counts as a valid registration. Other statuses are kept.
