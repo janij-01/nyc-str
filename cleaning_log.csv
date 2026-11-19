@@ -1,0 +1,12 @@
+step,detail,row_count
+listings_price_blank,raw.listings price is null,10512
+listings_nights_blank,raw.listings minimum_nights is null,8
+listings_license_blank,raw.listings license is null,24791
+listings_written,PostgreSQL clean.listings,29918
+registrations_continuation,raw continuation rows,778
+registrations_written,PostgreSQL clean.str_registrations,3842
+registrations_valid,status = Registered,3439
+registration_listings_written,PostgreSQL clean.registration_listings,3698
+complaints_dropped,non-matching complaints left out,5
+complaints_coords_missing,coords_missing = true,13
+complaints_written,MongoDB nyc_str.complaints_311_clean,14503
